@@ -1,0 +1,434 @@
+---
+title: "Lecture 1A"
+subtitle: "Clean Code"
+author: Tyler Ransom
+date: ECON 6343, University of Oklahoma
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'ou-colors.css']
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+    seal: false
+
+---
+
+class: title-slide   
+
+<br><br><br>
+
+# Lecture 1A
+
+## Clean Code
+
+### Tyler Ransom
+
+### ECON 6343, University of Oklahoma
+
+---
+
+# Attribution
+
+- Today's material comes from two sources:
+
+1. *The Clean Coder*, by Robert C. Martin
+
+2. [*Code and Data for the Social Sciences: A Practitioner's Guide*](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf), by Gentzkow and Shapiro
+
+Also a small contribution from [here](https://garywoodfine.com/what-is-clean-code/) and other sundry internet pages
+
+
+---
+
+# What is Clean Code?
+
+- .hi-crimson[Clean Code:] Code that is easy to understand, easy to modify, and hence easy to debug
+
+- Clean code saves you and your collaborators time
+
+
+---
+
+# Why clean code matters: Scientific progress
+
+- Good science is based on careful observations
+
+- Science progresses through iteratively testing hypotheses and making predictions
+
+- Scientific progress is impeded if 
+
+    - mistaken previous results are erroneously given authority
+    
+    - previous hypothesis tests are not reproducible
+    
+    - previous methods and results are not transparent 
+
+- Thus, for science that involves computer code, clean code is a must
+
+
+---
+
+# Why clean code matters: Personal and team sanity
+
+- You will always make a mistake while coding
+
+- What makes good programmers great is their ability to quickly identify and correct mistakes
+
+- Developing a habit of clean coding from the outset of your career will help you more quickly identify and correct mistakes
+
+- It will save you a lot of stress in the long-run
+
+- It will make your collaborative relationships more pleasant
+
+
+---
+
+# Why clean code is under-produced
+
+- If clean code is so beneficial and important, why isn't there more of it?
+
+<br>
+
+1. .hi-crimson[Competitive pressure] to produce research/products as quickly as possible
+    
+2. .hi-crimson[End user] (journal editor, reviewer, reader, dean) .hi-crimson[doesn't care what the code looks like], just that the product works
+    
+3. In the moment, clean code .hi-crimson[takes longer to produce] while seemingly conferring no benefit
+
+---
+
+# How does one produce clean code? Principles
+
+- Automation
+
+- Version control
+
+- Organization of data and software files
+
+- Abstraction
+
+- Documentation
+
+- Time / task management
+
+- Test-driven development (unit testing, profiling, refactoring)
+
+- Pair programming
+
+---
+
+# Automation
+
+- Gentzkow & Shapiro's two rules for automation:
+
+1. Automate everything that can be automated
+
+2. Write a single script that executes all code from beginning to end
+
+- There are two reasons automation is so important
+
+    - Reproducibility (helps with debugging and revisions)
+    
+    - Efficiency (having a code base saves you time in the future)
+
+- A single script that shows the sequence of steps taken is the equivalent to "showing your work"
+
+
+---
+
+# Version control
+
+- We've discussed Git and GitHub in a previous slide deck
+
+- Version control provides a principled way for you to easily undo changes, test out new specifications, and more
+
+---
+
+# File organization
+
+1. Separate directories by function
+
+2. Separate files into inputs and outputs
+
+3. Make directories portable
+
+- To see how professionals do this, check out the source code for R's [dplyr](https://github.com/tidyverse/dplyr) package
+
+    - There are separate directories for source code (`/src`), documentation (`/man`), code tests (`/test`), data (`/data`), examples (`/vignettes`), and more
+    
+- When you use version control, it forces you to make directories portable (otherwise a collaborator will not be able to run your code)
+
+    - use __relative__ file paths, not absolute file paths
+
+---
+
+# Data organization
+
+- The key idea is to practice .hi-crimson[relational data base management]
+
+- A relational database consists of many smaller data sets
+
+- Each data set is tabular and has a unique, non-missing key
+
+- Data sets "relate" to each other based on these keys
+
+- You can implement these practices in any modern statistical analysis software (R, Stata, SAS, Python, Julia, SQL, ...)
+
+- Gentzkow & Shapiro recommend not merging data sets until as far into your code pipeline as possible
+
+---
+
+# Abstraction
+
+- What is abstraction? It means "reducing the complexity of something by hiding unnecessary details from the user"
+
+- e.g. A dishwasher. All I need to know is how to put dirty dishes into the machine, and which button to press. I don't need to understand how the electrical wiring or plumbing work.
+
+- In programming, abstraction is usually handled with functions
+
+- Abstraction is usually a good thing
+
+- But it can be taken to a harmful extreme: overly abstract code can be "impenetrable" which makes it difficult to modify or debug
+
+---
+
+# Rules for Abstraction
+
+- Gentzkow & Shapiro give three rules for abstraction:
+
+1. Abstract to eliminate redundancy
+
+2. Abstract to improve clarity
+
+3. Otherwise, don't abstract
+
+---
+
+# Abstract to eliminate redundancy
+
+- Sometimes you might find yourself repeating lines of code with small modifications across the lines:
+
+```julia
+x1 = ones(15,6)
+x2 = 2*ones(15,6)
+x3 = 3*ones(15,6)
+```
+
+A better way to eliminate this redundancy is to write a function:
+
+```julia
+constructor(J,N,K) = J*ones(N,K)
+x1 = constructor(1,15,6)
+x2 = constructor(2,15,6)
+x3 = constructor(3,15,6)
+```
+
+Now if I need to adjust the `constructor()` function, I only have to modify one line of code instead of three. This approach also minimizes typos in copy-pasting lines that are largely similar.
+
+---
+
+# Abstract to improve clarity
+
+- Consider the example of obtaining OLS estimates from a vector `y` and covariate matrix `X` that already exist on our workspace
+
+- We could code this in two ways:
+
+```julia
+βhat = (X'*X)\X'*y
+```
+
+or
+
+```julia
+estimate_ols(yvar,Xmat) = (Xmat'*Xmat)\Xmat'*yvar
+βhat = estimate_ols(y,X)
+```
+
+The second approach is easier to read and understand what the code is doing
+
+Note that I used `yvar` instead of `y` in the function definition because the variables inside of functions do not exist outside of them (see [Scope](https://docs.julialang.org/en/v1/manual/variables-and-scoping/))
+
+---
+
+# Otherwise, don't abstract
+
+- One could argue that the examples on the previous two slides are overly abstract
+
+- OLS is a simple operation that only takes one line of code
+
+- If we're only doing it once in our script, then it may not make sense to use the function version
+
+- Similarly, it may not make sense to use the `constructor()` function if I only need to use it for three lines of code
+
+- This discussion points out that it can be difficult to know if one has reached the optimal level of abstraction
+
+- As you're starting out programming, I would advise doing almost every inside of a function (i.e. err on the side of over-abstraction when starting out)
+
+---
+
+# Documentation
+
+1. Don't write documentation you will not maintain
+
+2. Code should be self-documenting
+
+- Generally speaking, commented code is helpful
+
+- However, sometimes it can be harmful if, e.g. code comments contain dynamic information
+
+- It may not be helpful to have to rewrite comments every time you change the code
+
+- Code can be "self-documenting" by leveraging abstraction: function arguments make it easier to understand what is a variable and what is a constant
+
+---
+
+# Documentation in Julia
+
+- Julia has excellent built-in documentation called docstrings
+
+- These make great documents above functions to increase readability
+
+- It is also possible to use docstrings to automatically generate a code guide
+
+---
+
+# Docstrings in action
+
+```julia
+function estimate_ols(yvar,Xmat) 
+    b = (Xmat'*Xmat)\Xmat'*yvar
+    return b
+end
+```
+
+vs.
+
+```julia
+"""
+    estimate_ols(yvar,Xmat)
+
+This function computes OLS estimates for dependent variable `yvar` and covariates `Xmat`
+
+"""
+function estimate_ols(yvar,Xmat) 
+    b = (Xmat'*Xmat)\Xmat'*yvar
+    return b
+end
+```
+
+If you change the function `estimate_ols()`, e.g. to add a new argument, then you can easily make the same change to the docstring just above
+
+---
+
+# Time management
+
+- Time management is key to writing clean code
+
+- It is foolish to think that one can write clean code in a strained mental state
+
+- Code written when you are groggy, overly anxious, or distracted will come back to bite you
+
+- Schedule long blocks of time (1.5 hours - 3 hours) to work on coding where you eliminate distractions (email, social media, etc.)
+
+- Stop coding when you feel that your focus or energy is dissipating
+
+---
+
+# Task management
+
+- When collaborating on code, it is essential to not use email or Slack threads to discuss coding tasks
+
+- Rather, use a task management system that has dedicated messages for a particular point of discussion (bug in the code, feature to develop, etc.)
+
+- I use GitHub issues for all of my coding projects
+
+- For my personal task management, I use Trello to take all tasks out of my email inbox and put them in Trello's task management system
+
+- GitHub and Trello also have Kanban-style boards where you can easily visually track progress on tasks
+
+---
+
+# Test-driven development (unit testing, refactoring, profiling)
+
+- The only way to know that your code works is to test it!
+
+- Test-driven development (TDD) consists of a suite of tools for writing code that can be automatically tested
+
+- .hi-crimson[unit testing] is nearly universally used in professional software development
+
+- Unit testing is to software developers what washing hands is to surgeons
+
+---
+
+# Unit testing
+
+- Unit tests are scripts that check that a piece of code does everything it is supposed to do
+
+- When professionals write code, they also write unit tests for that code at the same time
+
+- If code doesn't pass tests, then bugs are caught on the front end
+
+- Test coverage determines how much of the code base is tested. High coverage rates are a must for unit testing to be useful.
+
+- R's [dplyr package](https://github.com/tidyverse/dplyr) shows that all unit tests are passing and that tests cover 88% of the code base
+
+- [Here](https://julia.quantecon.org/software_engineering/testing.html) is a nice step-by-step guide for doing this in Julia, via QuantEcon
+
+---
+
+# Refactoring
+
+- Refactoring refers to the action of restructuring code without changing its external behavior or functionality. Think of it as "reorganizing"
+
+- Example:
+
+```julia
+estimate_ols(yvar,Xmat) = (Xmat'*Xmat)\Xmat'*yvar
+```
+
+after refactoring becomes
+
+```julia
+estimate_ols(yvar,Xmat) = Xmat\yvar
+```
+
+- Nothing changed in the code except the number of characters in the function
+
+- The new version may run faster, but is more readable. The output is unchanged.
+
+- Refactoring could also mean reducing the number of input arguments
+
+---
+
+# Profiling
+
+- Profiling refers to checking the resource demands of your code
+
+- How much processing time does your script take? How much memory?
+
+- Clean code should be highly performant: it uses minimal computational resources
+
+- Profiling and refactoring go hand in hand, along with unit testing, to ensure that code is maximally optimized
+
+- [Here](https://www.geeksforgeeks.org/benchmarking-in-julia/) is an intro guide to profiling in Julia using the `@time` macro
+
+---
+
+# Pair programming
+
+- An essential part of clean code is reviewing code
+
+- An excellent way to review code is to do so at the time of writing
+
+- .hi-crimson[Pair programming] involves sitting two programmers at one computer
+
+- One programmer does the writing while the other reviews
+
+- This is a great way to spot silly typos and other issues that would extend development time
+
+- It's also a great way to quickly refactor code at the start
+
+- .hi-crimson[I strongly encourage you to do pair programming on problem sets in this course!]
