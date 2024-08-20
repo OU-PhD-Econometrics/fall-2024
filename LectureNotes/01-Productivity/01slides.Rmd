@@ -105,17 +105,19 @@ The techniques we will cover are used in a wide variety of fields of applied mic
 
 1. Everything we use in the course will be .hi-crimson[freely available] and posted to the course GitHub (which we will discuss more about momentarily)
 
-2. Book (free [online](https://eml.berkeley.edu/books/choice2.html)):
+2. Paid subscription to a generative AI service (e.g. OpenAI, Anthropic, Google, etc.)
+
+3. Book (free [online](https://eml.berkeley.edu/books/choice2.html)):
 
   1. Train (2003)
 
-3. Various published academic papers
+4. Various published academic papers
 
 ---
 
 # What we will cover in the class
 
-1. Basic computing and things you need to think about
+1. Basic computing skills
 
 2. Coding, version control, reproducibility, workflow
 
@@ -137,7 +139,7 @@ The techniques we will cover are used in a wide variety of fields of applied mic
 
 - Weekly coding problem sets
 
-- Midterm exam
+- Midterm exam (oral)
 
 - One presentation of a paper from the literature
 
@@ -172,6 +174,8 @@ The techniques we will cover are used in a wide variety of fields of applied mic
 
 - You .hi-crimson[must] use Julia and write .jl scripts, no Jupyter
 
+- "No holds barred" regarding use of AI assistance
+
 - You can work in groups of up to 3, but you must turn in your own code
 
 - Problem sets will be where you .hi-crimson[implement] the techniques we learn in class on your own,
@@ -200,7 +204,7 @@ date to ensure the paper is appropriate for a presentation
 
 - You will do a referee report of a paper of your choosing
 
-- The paper shouldn't be published, or if it has been published, you should use the earliest pre-print version
+- The paper shouldn't be published, or if it has been published, you should use the earliest pre-print version available
 
 - More details about how to do this towards the end of the semester
 
@@ -217,11 +221,13 @@ date to ensure the paper is appropriate for a presentation
 
 - There is no page limit, but the above would be hard to fit in fewer than five pages
 
+- You are encouraged to use AI models in drafting this idea
+
 ---
 
 # Slides
 
-All slides will be available on the [course GitHub page](https://github.com/OU-PhD-Econometrics/fall-2022)
+All slides will be available on the [course GitHub page](https://github.com/OU-PhD-Econometrics/fall-2024)
 
 --
 
@@ -258,6 +264,8 @@ println("β-hat is $(round(bbeta_hat[1],digits=3)) and the true β is $(round(bb
 
 - I recommend [this cheat sheet](https://juliadocs.github.io/Julia-Cheat-Sheet/)
 
+- Of course, any frontier AI model will be able to provide you with expert, individualized help
+
 
 ---
 
@@ -267,7 +275,7 @@ println("β-hat is $(round(bbeta_hat[1],digits=3)) and the true β is $(round(bb
 
 - R, Python and Matlab are also great
 
-- I really like Julia because it is easy to code in and delivers excellent peformance
+- I really like Julia because it is easy to code in and delivers excellent performance
 
 - If you click [here](https://julialang.org/benchmarks/) you can see that Julia delivers similar performance as C and FORTRAN
 
@@ -294,7 +302,7 @@ println("β-hat is $(round(bbeta_hat[1],digits=3)) and the true β is $(round(bb
 
 # More about Julia
 
-- There is a [separate slide deck](https://raw.githack.com/OU-PhD-Econometrics/fall-2022/master/LectureNotes/00-JuliaTips/00slides.html#1) for your reference
+- There is a [separate slide deck](https://raw.githack.com/OU-PhD-Econometrics/fall-2024/master/LectureNotes/00-JuliaTips/00slides.html#1) for your reference
 
 - This explains more about how to use Julia
 
@@ -308,13 +316,13 @@ println("β-hat is $(round(bbeta_hat[1],digits=3)) and the true β is $(round(bb
 
 - There are many options out there
 
-- Microsoft's VS Code seems to be gaining quite a bit of popularity
+- Microsoft's VS Code seems to be gaining quite a bit of popularity (in part due to the AI assistance provided by GitHub Copilot)
 
 - It contains features that will help spot errors in your code that you wouldn't have otherwise seen
 
 - Other IDE options include RStudio, Atom, Sublime, Notepad++, Vim, Emacs
 
-- Just choose one you like and go with it. I use Vim but have recently started using VS Code more
+- Just choose one you like and go with it. I use VS Code with Vim keybindings
 
 ---
 
@@ -477,9 +485,11 @@ There are four main git operations:
 
 # Activity: Forking the class repository
 
-- After signing up for a GitHub account, go to the class [repository](https://github.com/OU-PhD-Econometrics/fall-2022) and click `Fork` in the top-righthand corner
+- After signing up for a GitHub account, go to the class [repository](https://github.com/OU-PhD-Econometrics/fall-2024) and click `Fork` in the top-righthand corner
 
-- Once you do this, you should be able to visit https://github.com/your-username/fall-2022 and see an exact copy of all of the files
+- Once you do this, you should be able to visit https://github.com/your-username/fall-2024 and see an exact copy of all of the files
+
+- You can also rename your fork if the default name of "fall-2024" is not to your liking
 
 ---
 
@@ -517,7 +527,7 @@ There are four main git operations:
 
 - Developing good programming skills takes a long time
 
-- I have been programming for well over a decade and I still make bone-headed mistakes (just ask my co-authors!)
+- I have been programming for well over 15 years and I still make bone-headed mistakes (just ask my co-authors!)
 
 - Following good programming practices will make the programming process less painful
 
