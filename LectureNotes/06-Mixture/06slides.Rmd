@@ -343,6 +343,39 @@ q_{is}=&\frac{\pi_s\prod_t\mathcal{L}(Y_{1t}|X_{1t},\alpha_1,s)\mathcal{L}(Y_{2t
 
 ---
 
+# Maximization Minorization (MM) Algorithm
+
+- See `r Citet(biblio,"james2017")`
+
+- Alternative to EM algorithm for estimating mixed logit models
+
+- Addresses key limitation of EM: repeated numerical optimization
+
+- Uses a .hi[globally concave] surrogate function with closed-form solution
+
+- Significantly faster than EM in many cases
+
+- Allows for continuously distributed unobserved heterogeneity
+
+---
+
+# Advantages of MM Algorithm
+
+- Simple implementation
+
+- Low cost per iteration
+
+- No need to store entire simulated dataset
+
+- Easily parallelizable
+
+- Effective for models with many fixed coefficients or repeated observations
+
+- Can be 5-8 times faster than EM and competitive with quasi-Newton methods
+
+
+---
+
 # To Recap
 
 - Why are we doing all of this difficult work?
@@ -354,6 +387,8 @@ q_{is}=&\frac{\pi_s\prod_t\mathcal{L}(Y_{1t}|X_{1t},\alpha_1,s)\mathcal{L}(Y_{2t
 - But introducing preference heterogeneity can make the model intractible
 
 - Discretizing the distribution of heterogeneity and using the EM algorithm can help
+
+- Or use the MM algorithm
 
 - We also need to be mindful of how to compute standard errors of the estimates
 

@@ -342,6 +342,39 @@ q_{is}=&amp;\frac{\pi_s\prod_t\mathcal{L}(Y_{1t}|X_{1t},\alpha_1,s)\mathcal{L}(Y
 
 ---
 
+# Maximization Minorization (MM) Algorithm
+
+- See James (2017)
+
+- Alternative to EM algorithm for estimating mixed logit models
+
+- Addresses key limitation of EM: repeated numerical optimization
+
+- Uses a .hi[globally concave] surrogate function with closed-form solution
+
+- Significantly faster than EM in many cases
+
+- Allows for continuously distributed unobserved heterogeneity
+
+---
+
+# Advantages of MM Algorithm
+
+- Simple implementation
+
+- Low cost per iteration
+
+- No need to store entire simulated dataset
+
+- Easily parallelizable
+
+- Effective for models with many fixed coefficients or repeated observations
+
+- Can be 5-8 times faster than EM and competitive with quasi-Newton methods
+
+
+---
+
 # To Recap
 
 - Why are we doing all of this difficult work?
@@ -353,6 +386,8 @@ q_{is}=&amp;\frac{\pi_s\prod_t\mathcal{L}(Y_{1t}|X_{1t},\alpha_1,s)\mathcal{L}(Y
 - But introducing preference heterogeneity can make the model intractible
 
 - Discretizing the distribution of heterogeneity and using the EM algorithm can help
+
+- Or use the MM algorithm
 
 - We also need to be mindful of how to compute standard errors of the estimates
 
@@ -370,6 +405,10 @@ pp. 933-946. DOI:
 Gillingham, K., F. Iskhakov, A. Munk-Nielsen, et al. (2022).
 "Equilibrium Trade in Automobiles". In: _Journal of Political Economy_.
 DOI: [10.1086/720463](https://doi.org/10.1086%2F720463).
+
+James, J. (2017). "MM Algorithm for General Mixed Multinomial Logit
+Models". In: _Journal of Applied Econometrics_ 32.4, pp. 841-857. DOI:
+[10.1002/jae.2532](https://doi.org/10.1002%2Fjae.2532).
 
 Train, K. (2009). _Discrete Choice Methods with Simulation_. 2nd ed.
 Cambridge; New York: Cambridge University Press. ISBN: 9780521766555.
