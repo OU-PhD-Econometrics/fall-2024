@@ -95,7 +95,7 @@ While this looks daunting, we can slightly modify the objective function from Qu
 The first step is to recognize that we will need to \textit{approximate} the integral in \eqref{eq:intlike}. There are many ways of doing this, but we will use something called Gauss-Legendre quadrature.\footnote{Another popular method of approximating the integral is by simulation.} We can rewrite the integral in \eqref{eq:intlike} as a (weighted) discrete summation:
 \begin{align}
 \label{eq:quadlike}
-\ell\left(X,Z;\beta,\mu_{\gamma},\sigma_{\gamma}\right)&=\sum_{i=1}^N\sum_{t=1}^T \log\left\{\sum_{k}\omega_{r}\prod_{j}\left[\frac{\exp\left(X_{it}\left(\beta_{j}-\beta_{J}\right)+\xi_r\left(Z_{itj}-Z_{itJ}\right)\right)}{\sum_k \exp\left(X_{it}\left(\beta_{k}-\beta_{J}\right)+\xi_r\left(Z_{itk}-Z_{itJ}\right)\right)}\right]^{d_{itj}}f\left(\xi_r\right)\right\}
+\ell\left(X,Z;\beta,\mu_{\gamma},\sigma_{\gamma}\right)&=\sum_{i=1}^N\sum_{t=1}^T \log\left\{\sum_{r}\omega_{r}\prod_{j}\left[\frac{\exp\left(X_{it}\left(\beta_{j}-\beta_{J}\right)+\xi_r\left(Z_{itj}-Z_{itJ}\right)\right)}{\sum_k \exp\left(X_{it}\left(\beta_{k}-\beta_{J}\right)+\xi_r\left(Z_{itk}-Z_{itJ}\right)\right)}\right]^{d_{itj}}f\left(\xi_r\right)\right\}
 \end{align}
 where $\omega_r$ are the quadrature weights and $\xi_r$ are the quadrature points. $\tilde{\gamma}$ and $\sigma_{\gamma}$ are parameters of the distribution function $f\left(\cdot\right)$.
 
