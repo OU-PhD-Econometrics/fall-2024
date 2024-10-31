@@ -436,7 +436,7 @@ end
 
     - High school dropout `r Citep(biblio,"fu_al2020")`
     
-    - College dropout `r Citep(biblio,c("stinebricknerStinebrickner2014jole", "arcidiacono_al2016"))`
+    - College dropout `r Citep(biblio,c("stinebricknerStinebrickner2014jole", "arcidiacono_al2025"))`
     
     - College major choice `r Citep(biblio,c("arcidiacono2004", "stinebricknerStinebrickner2014restud"))`
 

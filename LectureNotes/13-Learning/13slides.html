@@ -4,7 +4,7 @@
     <title>Lecture 13</title>
     <meta charset="utf-8" />
     <meta name="author" content="Tyler Ransom" />
-    <script src="13slides_files/header-attrs-2.14/header-attrs.js"></script>
+    <script src="13slides_files/header-attrs-2.28/header-attrs.js"></script>
     <link href="13slides_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="13slides_files/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="13slides_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
@@ -340,7 +340,7 @@ Some of these slides are based on content from Peter Arcidiacono's course on lea
 
 .scroll-box-12[
 
-```julia
+``` julia
 using Random, Statistics, LinearAlgebra, DataFrames, DataFramesMeta, CSV, FixedEffectModels, MixedModels
 df = CSV.read("nlswlearn.csv")
 dfuse = df[df.ln_wage.!=999,:]
@@ -385,7 +385,7 @@ end
 # Looking at the belief updating
 .scroll-box-20[
 
-```julia
+``` julia
 │ Row   │ ln_wage │ idcode │ t     │ signal     │ priorEbelief │ postrEbelief │ priorVbelief │ postrVbelief │
 ├───────┼─────────┼────────┼───────┼────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
 │ 1     │ 999.0   │ 1      │ 1     │ 0.0        │ 0.0          │ 0.0          │ 0.106297     │ 0.106297     │
@@ -437,7 +437,7 @@ end
 
     - High school dropout (Fu, Grau, and Rivera, 2020)
     
-    - College dropout (Stinebrickner and Stinebrickner, 2014a; Arcidiacono, Aucejo, Maurel, and Ransom, 2016)
+    - College dropout (Stinebrickner and Stinebrickner, 2014a; Arcidiacono, Aucejo, Maurel, and Ransom, 2025)
     
     - College major choice (Arcidiacono, 2004; Stinebrickner and Stinebrickner, 2014b)
 
@@ -476,10 +476,10 @@ Arcidiacono, P. (2004). "Ability Sorting and the Returns to College
 Major". In: _Journal of Econometrics_ 121, pp. 343-375. DOI:
 [10.1016/j.jeconom.2003.10.010](https://doi.org/10.1016%2Fj.jeconom.2003.10.010).
 
-Arcidiacono, P., E. Aucejo, A. Maurel, et al. (2016). _College
-Attrition and the Dynamics of Information Revelation_. Working Paper.
-Duke University. URL:
-[https://tyleransom.github.io/research/CollegeDropout2016May31.pdf](https://tyleransom.github.io/research/CollegeDropout2016May31.pdf).
+Arcidiacono, P., E. Aucejo, A. Maurel, et al. (2025). "College
+Attrition and the Dynamics of Information Revelation". In: _Journal of
+Political Economy_ 133.1. DOI:
+[10.1086/732526](https://doi.org/10.1086%2F732526).
 
 Arroyo Marioli, F., F. Bullano, S. Kucinskas, et al. (2020). _Tracking
 R of COVID-19: A New Real-Time Estimation Using the Kalman Filter_.
