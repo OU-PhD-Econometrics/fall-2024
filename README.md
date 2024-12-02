@@ -37,5 +37,6 @@ Full course syllabus is [here](https://raw.githack.com/OU-PhD-Econometrics/fall-
 | ---  | Tue Nov 26  | **No class**                 | | |
 | ---  | Thu Nov 28  | **No class** (Thanksgiving)  | | |
 | 29   | Tue Dec  3  | Presentations or Time Series Intro (depending on time) | | Presentation  |
-| 30   | Thu Dec  5  | Presentations  | | Presentation, [Referee Report](https://github.com/OU-PhD-Econometrics/fall-2024/blob/master/OtherAssignments/RefereeReport.pdf)  |
-| ---  | Mon Dec 10  | Final Exam (Referee Report due)  | | Research Proposal |
+| 30   | Thu Dec  5  | Presentations  | | Presentation, [Referee Report](https://github.com/OU-PhD-Econometrics/fall-2024/blob/master/OtherAssignments/RefereeReport.pdf) due (submit to Canvas)  |
+| ---  | Mon Dec 10  | No in-class Final Exam  | |  |
+| ---  | Wed Dec 12  |   | | Research Proposal due (submit to Canvas) |
